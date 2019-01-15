@@ -7,16 +7,20 @@ Created on Wed Jan  9 22:46:49 2019
 """
 
 class Solution(object):
-#    def __init__(self):
-#        self.l = set()
-    l = set()
+    def __init__(self):
+        self.l = set()
+    
+#    l = set()  # should not use global variable. 
+        
+        
     def isHappy(self, n):
         """
         :type n: int
         :rtype: bool
         """
         print ('analyzing ' + str(n))
-        self.l.add(n)
+        #self.l.add(n)  # should not add here without checking. 
+        #add it only when the check result is not 1, and it doesn't exist before
         
         result = self.sumSquares(n) 
         # if sum of the squares of its digits equals 1
@@ -25,8 +29,9 @@ class Solution(object):
         
         #else: 
         else:
-            if result not in self.l:  
-                self.l.add(result)
+            if result not in self.l:
+                #add it only when the check result is not 1, and it doesn't exist before
+                self.l.add(result) 
                 print (self.l)
                 return self.isHappy(result)
             else:
@@ -61,9 +66,11 @@ def main():
 #            break
     import sys
     
-    n =13
+    
     ret = Solution().isHappy(19)
-    ret = Solution().isHappy(n)
+    out = (ret)
+    print (out)
+    ret = Solution().isHappy(13)
 
     out = (ret)
     print (out)
