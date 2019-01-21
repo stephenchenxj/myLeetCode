@@ -21,6 +21,37 @@ class Solution(object):
         if len(s) != len(t):
             return False
         
+        
+        
+#        if not s or not t:
+ #           return True
+        
+        
+        dic = {}
+        dic2 = {}
+        count = 0
+        count2 = 0
+        
+        
+        for a,b in zip(s,t):
+            
+            print(a)
+            print(b)
+            
+            if not a in dic:
+                dic[a] = count
+                count += 1
+            if not b in dic2:
+                dic2[b] = count2
+                count2 +=1
+
+        for a,b in zip(s,t):
+            if not dic[a] == dic2[b]:
+                return False
+        return True
+
+
+        
         index = 0
         for c in s:
             if c not in self.hashmapA:
@@ -63,8 +94,21 @@ class Solution(object):
 
 def main():
     
+    s = 'abcdefgh'
+    t = 'xyzstu'
+    u = '123456'
     
+    for a,b in zip(s,t):
+            
+            print(a)
+            print(b)
 
+
+    for a,b,c in zip(s,t,u):
+            
+            print(a)
+            print(b)
+            print(c)
 
     import sys
     
