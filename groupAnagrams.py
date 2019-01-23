@@ -19,13 +19,20 @@ class Solution(object):
             key = self.myhash(eachStr)
             
             if key not in self.hashmap:
-                self.hashmap[key] = eachStr
+                self.hashmap[key] = [eachStr]
             else:
                 self.hashmap[key].append(eachStr)
         print(self.hashmap)
         
+        result = []
+        for key in self.hashmap:
+            result.append(self.hashmap[key])
+        return result
+        
+        
     def myhash(self, st):
         hm = {}
+        st = ''.join(sorted(st))
         for c in st:
             if c not in hm:
                 hm[c]= 1
@@ -40,13 +47,13 @@ class Solution(object):
         return result
     
 def main():
-    #ret = Solution().groupAnagrams(['eat','tea', 'tan', 'ate', 'nat','bat'])
-    #print(ret)
-    
-    ret = Solution().myhash('aaab')
+    ret = Solution().groupAnagrams(['eat','tea', 'tan', 'ate', 'nat','bat'])
     print(ret)
     
-    ret = Solution().myhash('baaa')
+    ret = Solution().myhash(('aaab'))
+    print(ret)
+    
+    ret = Solution().myhash(('aaba'))
     print(ret)
     
 if __name__ == '__main__':
