@@ -17,7 +17,7 @@ class Solution(object):
         if len(nums) == 1:
             return 0
         
-        for pI in range(1,len(nums)-1):
+        for pI in range(0,len(nums)):
             l = 0
             r = 0
             for i in range(pI):
