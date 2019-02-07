@@ -12,29 +12,46 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        
+        
+        
+        
         if len(nums) == 0:
             return -1
         if len(nums) == 1:
             return 0
         
+        l = 0
+        r = sum(nums)
+            
         for pI in range(0,len(nums)):
-            l = 0
-            r = 0
-            for i in range(pI):
-                l += nums[i]
-            for i in range(pI+1,len(nums)):
-                r += nums[i]            
+
+            l += nums[pI]        
             
             if l==r:
                 return pI
+            r -= nums[pI]
+            
             
         return -1
         
+
+    
+    
+        
 def main():
     nums = [-1,-1,-1,0,1,1]
+    nums = [1, 7, 3, 6, 5, 6]
+    
     ret = Solution().pivotIndex(nums)
     print('Result =')
     print(ret)
+    
+    
+    for index, num in enumerate(nums):
+        print(index)
+        print(num)
+            
     
         
         
