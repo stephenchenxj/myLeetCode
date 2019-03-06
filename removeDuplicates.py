@@ -29,6 +29,7 @@ class Solution(object):
 def main():
     nums = [0,0,1,1,1,2,2,3,3,4]
     print(Solution().removeDuplicates(nums))
+    print(nums)
     
 if __name__ == '__main__':
     main()

@@ -29,12 +29,23 @@ class Solution(object):
         
         #return result
         return ' '.join(result)
+    
+    def reverseWordsIII(self, s: str) -> str:
+        if not s:
+            return ''
+
+        res = ''
+        for word in s.split():
+            res += word[::-1]
+            res += ' '
+        return res.strip()
         
         
         
 def main():
     s = "the sky   is blue!"
     print(Solution().reverseWords(s))
+    print(Solution().reverseWordsIII(s))
     
 if __name__ == '__main__':
     main()
