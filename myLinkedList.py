@@ -34,7 +34,7 @@ class MyLinkedList(object):
         :type index: int
         :rtype: Node
         """
-        if index > self.size:
+        if index >= self.size:
             return None
         
         currentNode = self.head.next
@@ -50,7 +50,7 @@ class MyLinkedList(object):
         :type index: int
         :rtype: int
         """
-        if index > self.size:
+        if index >= self.size:
             return -1
         
         currentNode = self.getNode(index)
@@ -68,11 +68,11 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-        if index == self.size + 1:
+        if index == self.size:
             indexNode = self.tail
-        elif index <= self.size:
+        elif index < self.size:
             indexNode = self.getNode(index)
-        elif index > self.size +1:
+        elif index > self.size:
             return
         newNode = Node(val)
         newNode.next = indexNode
@@ -88,7 +88,7 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-        self.addAtIndex(1, val)
+        self.addAtIndex(0, val)
         
 
     def addAtTail(self, val):
@@ -105,7 +105,7 @@ class MyLinkedList(object):
         :type index: int
         :rtype: None
         """
-        if index <= self.size  and index > 0:
+        if index < self.size  and index >= 0:
             indexNode = self.getNode(index)
         else:
             return
@@ -128,11 +128,18 @@ class MyLinkedList(object):
 '''
 ["MyLinkedList","addAtHead","addAtTail","addAtIndex","get","deleteAtIndex","get"]
 [[],[1],[3],[1,2],[1],[1],[1]]
+
+
+["MyLinkedList","get","addAtIndex","get","get","addAtIndex","get","get"]
+[[],[0],[1,2],[0],[1],[0,1],[0],[1]]
+
+
 '''        
         
       
 def main():
-    
+ 
+    '''
     obj = MyLinkedList() 
     print(obj)
     
@@ -146,13 +153,60 @@ def main():
     val = 2
     print( obj.addAtIndex(index,val) )
     
+    print('my test')
+    print( obj.get(0) )
+    print( obj.get(1) )
+    print( obj.get(2) )
+    print('my test')
+    
+    
     index = 1
     print( obj.get(index) )
     
     index = 1
     print( obj.deleteAtIndex(index) )
     
+    index = 1
     print( obj.get(index) )
+    
+    
+    index = 0
+    print( obj.get(index) )
+    index = 1
+    print( obj.get(index) )
+    index = 2
+    print( obj.get(index) )
+    
+    
+    '''
+    obj = MyLinkedList() 
+    print(obj)
+    
+    index = 0
+    print( obj.get(index) )
+    
+    index = 1
+    val = 2
+    print( obj.addAtIndex(index,val) )
+    
+    index = 0
+    print( obj.get(index) )
+    
+    index = 1
+    print( obj.get(index) )
+    
+    index = 0
+    val = 1
+    print( obj.addAtIndex(index,val) )
+    
+    index = 0
+    print( obj.get(index) )
+    
+    index = 1
+    print( obj.get(index) )
+
+    
+    
     
 if __name__ == '__main__':
     main()
