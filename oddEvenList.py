@@ -18,13 +18,15 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
+        if not head:
+            return head
         pre_even = None
         pre_odd = None
         oddHead = None
         
         node = head
         index = 0
-        while node.next:
+        while node:
             if index %2 == 0: #even
                 if pre_even == None: # first ever even
                     pre_even = node
@@ -42,6 +44,8 @@ class Solution(object):
             index +=1
             node = node.next
         pre_even.next = oddHead
+        if pre_odd:
+            pre_odd.next = None
         return head
         
         
@@ -52,10 +56,12 @@ def main():
     nodeC = ListNode(3)
     nodeD = ListNode(4)
     nodeE = ListNode(5)
+    
     nodeA.next = nodeB
     nodeB.next = nodeC
     nodeC.next = nodeD
     nodeD.next = nodeE
+    nodeE.next = None
     
     mySolution = Solution()
     result = mySolution.oddEvenList(nodeA)
