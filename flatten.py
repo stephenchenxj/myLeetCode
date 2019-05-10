@@ -23,23 +23,37 @@ class Solution(object):
         """
         currentNode = head
         node2connect = []
-        while currentNode:
+        
+        # exist condition: no more next node or no more node to connect
+        while currentNode.next or node2connect !=[]: 
+            #print(currentNode.val)
             if currentNode.child: # got child
-                node2connect.append( currentNode.next )
+                if currentNode.next: # and it got next
+                    node2connect.append( currentNode.next )
+                    #print(currentNode.next.val)
                 child = currentNode.child
                 currentNode.next = child
                 child.prev = currentNode
                 currentNode = child
+                
             else: # no child
                 if currentNode.next:
                     currentNode = currentNode.next
+                    #print(currentNode.val)
                 elif node2connect !=[]: # currentNode.next == None, and node2connect got items
-                    node = node2connect.pop()
-                    currentNode.next = node
-                    node.pre = currentNode
-                    currentNode = node
+                    node = node2connect.pop()                    
+                    if node: # not empty node
+                        #print(node.val)
+                        currentNode.next = node
+                        node.pre = currentNode
+                        currentNode = node
+                    else:
+                        currentNode.next = node
+                        currentNode = node
+                        #print(currentNode.val)
             
-            v = currentNode.val
+            #v = currentNode.val
+        #print('end flatten')
         return head
                     
                     
