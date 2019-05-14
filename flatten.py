@@ -29,6 +29,7 @@ class Solution(object):
             #print(currentNode.val)
             if currentNode.child: # got child
                 if currentNode.next: # and it got next
+                    currentNode.next.prev = None # clear the prev. it will get new prev anyway
                     node2connect.append( currentNode.next )
                     #print(currentNode.next.val)
                 child = currentNode.child
@@ -46,7 +47,7 @@ class Solution(object):
                     if node: # not empty node
                         #print(node.val)
                         currentNode.next = node
-                        node.pre = currentNode
+                        node.prev = currentNode
                         currentNode = node
                     else:
                         currentNode.next = node
