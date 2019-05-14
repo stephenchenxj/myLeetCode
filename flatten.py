@@ -21,6 +21,10 @@ class Solution(object):
         :type head: Node
         :rtype: Node
         """
+        
+        if head == None:
+            return head
+        
         currentNode = head
         node2connect = []
         
