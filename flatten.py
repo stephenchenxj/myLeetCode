@@ -29,7 +29,7 @@ class Solution(object):
         node2connect = []
         
         # exist condition: no more next node or no more node to connect
-        while currentNode.next or node2connect !=[]: 
+        while currentNode.next or node2connect !=[] or currentNode.child: 
             #print(currentNode.val)
             if currentNode.child: # got child
                 if currentNode.next: # and it got next
@@ -102,6 +102,8 @@ def main():
         flatten = flatten.next
     '''    
     
+    
+    
     node1.next = node2
     node2.prev = node1
     node2.next = node3
@@ -131,6 +133,26 @@ def main():
     while flatten:
         print (flatten.val)
         flatten = flatten.next
-      
+        
+    '''    
+    node1.child = node2
+    node2.child = node3
+    node3.child = node4
+    node4.child = node5
+    node5.child = node6
+    node6.child = node7
+    node7.child = node8
+    node8.child = node9
+    node9.child = node10
+    node10.child = node11
+    node11.child = node12
+    
+    
+    flatten = Solution().flatten(node1)
+    
+    while flatten:
+        print (flatten.val)
+        flatten = flatten.next
+    '''  
 if __name__ == '__main__':
     main()
