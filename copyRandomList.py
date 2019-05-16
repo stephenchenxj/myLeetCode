@@ -18,21 +18,18 @@ class Solution(object):
         :type head: Node
         :rtype: Node
         """
-        if head == None:
-            return head
-        
-        head = node = Node(head.val, head.next, head.random)   
-        
-        while node : #or node.next or node.random:
-            if node.next:
-                newNext = Node(node.next.val, node.next.next, node.next.random)
-                node.next = newNext
-            if node.random:
-                newRandom = Node(node.random.val, node.random.next, node.random.random)
-                node.random = newRandom
-            node = node.next
-            
-        return head
+        map = {None : None}
+        temp = head
+        while temp:
+            map[temp] = Node(temp.val,temp.next,temp.random)
+            temp = temp.next
+        print(map)
+        temp = head
+        while temp:
+            map[temp].next = map[temp.next]
+            map[temp].random = map[temp.random]
+            temp = temp.next
+        return map[head]
             
 
 
