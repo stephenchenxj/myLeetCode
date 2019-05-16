@@ -21,9 +21,9 @@ class Solution(object):
         if head == None:
             return head
         
-        node = Node(head.val, head.next, head.random)   
+        head = node = Node(head.val, head.next, head.random)   
         
-        while node.next or node.random:
+        while node : #or node.next or node.random:
             if node.next:
                 newNext = Node(node.next.val, node.next.next, node.next.random)
                 node.next = newNext
@@ -32,7 +32,7 @@ class Solution(object):
                 node.random = newRandom
             node = node.next
             
-        return node
+        return head
             
 
 
