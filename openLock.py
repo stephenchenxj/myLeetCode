@@ -28,33 +28,25 @@ class Solution(object):
             steps += 1
             newQ = []
             for key in q:
-                for i in range(4):
-                    newKey1 = key[:i] + move[key[i]][0] + key[i+1:]
-                    newKey2 = key[:i] + move[key[i]][1] + key[i+1:]
-                    #print (newKey1)
-                    #print(newKey2)
-                    if newKey1 in deadNchecked:
-                        continue
-                    elif newKey1 == target:
+                for i in range(8):
+                    newKey = key[:int(i/2)] + move[key[int(i/2)]][i%2] + key[int(i/2)+1:]
+                    if newKey == target:
                         return steps
-                    else:
-                        newQ.append(newKey1)
+                    elif newKey not in deadNchecked:
+                        newQ.append(newKey)
                         #deadNchecked.add(newKey1)
                         
-                    if newKey2 in deadNchecked:
-                        continue
-                    elif newKey2 == target:
-                        return steps
-                    else:
-                        newQ.append(newKey2)
-                        #deadNchecked.add(newKey2)
 #                print( 'steps = %d , newQ is ' %steps)
 #                print (newQ)
                         
                 #deadNchecked.add(key)
                 
-            
+                deadNchecked.add(key)
             q = newQ
+#            print( 'steps = %d , newQ is ' %steps)
+#            print (newQ)
+#            print( ' deadNchecked is ')
+#            print (deadNchecked)
         
         return -1
         
@@ -63,13 +55,13 @@ class Solution(object):
         
         
 def main():
-    deadends = ["0100"]
-    target = '2200'
+    deadends = ["0500"]
+    target = '3000'
     print(Solution().openLock(deadends,target))
     
-#    deadends = ["8887","8889","8878","8898","8788","8988","7888","9888"]
-#    target = '8888'
-#    print(Solution().openLock(deadends,target))
+    deadends = ["8887","8889","8878","8898","8788","8988","7888","9888"]
+    target = '8888'
+    print(Solution().openLock(deadends,target))
     
 if __name__ == '__main__':
     main()
