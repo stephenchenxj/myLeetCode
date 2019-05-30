@@ -30,11 +30,12 @@ class Solution(object):
             for key in q:
                 for i in range(8):
                     newKey = key[:int(i/2)] + move[key[int(i/2)]][i%2] + key[int(i/2)+1:]
-                    if newKey == target:
+                    if newKey in deadNchecked:
+                        continue
+                    elif newKey == target:
                         return steps
-                    elif newKey not in deadNchecked:
+                    else:
                         newQ.add(newKey)
-            for key in q:
                 deadNchecked.add(key)
             q = newQ
         
