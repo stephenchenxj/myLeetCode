@@ -39,20 +39,20 @@ class Solution(object):
             if nodeToClone not in nodeMapping.keys(): # this node is not in Hashmap yet. It has not been visited.
                 nodeMapping[nodeToClone] = Node(nodeToClone.val,[])
                 #print(nodeToClone.val)
-                for node in nodeToClone.neighbors:
-                    if node not in nodeMapping.keys(): # this neighbor node is not in Hashmap yet. It has not been visited.
-                        nodeStack.append(node)
+                for neighbor in nodeToClone.neighbors:
+                    if neighbor not in nodeMapping.keys(): # this neighbor node is not in Hashmap yet. It has not been visited.
+                        nodeStack.append(neighbor)
         
         # deep copy of node neighbors
         nodeStack = [node]
         visitedNodes = {node}
         while nodeStack:
             nodeToLink = nodeStack.pop()
-            for node in nodeToLink.neighbors:
-                nodeMapping[nodeToLink].neighbors.append(nodeMapping[node]) 
-                if node not in visitedNodes:                    
-                    visitedNodes.add(node)
-                    nodeStack.append(node)
+            for neighbor in nodeToLink.neighbors:
+                nodeMapping[nodeToLink].neighbors.append(nodeMapping[neighbor]) 
+                if neighbor not in visitedNodes:                    
+                    visitedNodes.add(neighbor)
+                    nodeStack.append(neighbor)
                     
         return nodeMapping[node]
                     
