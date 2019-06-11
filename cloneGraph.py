@@ -38,6 +38,7 @@ class Solution(object):
             
             if nodeToClone not in nodeMapping.keys(): # this node is not in Hashmap yet. It has not been visited.
                 nodeMapping[nodeToClone] = Node(nodeToClone.val,[])
+                #print(nodeToClone.val)
                 for node in nodeToClone.neighbors:
                     if node not in nodeMapping.keys(): # this neighbor node is not in Hashmap yet. It has not been visited.
                         nodeStack.append(node)
@@ -48,8 +49,10 @@ class Solution(object):
         while nodeStack:
             nodeToLink = nodeStack.pop()
             for node in nodeToLink.neighbors:
-                if node not in visitedNodes:
-                    nodeMapping[nodeToLink].neighbors.append(nodeMapping[node])
+                nodeMapping[nodeToLink].neighbors.append(nodeMapping[node]) 
+                if node not in visitedNodes:                    
+                    visitedNodes.add(node)
+                    nodeStack.append(node)
                     
         return nodeMapping[node]
                     
@@ -97,8 +100,8 @@ def main():
     
     node1.neighbors.append(node2)
     node1.neighbors.append(node4)
-    node1.neighbors.append(node5)
-    node1.neighbors.append(node6)
+#    node1.neighbors.append(node5)
+#    node1.neighbors.append(node6)
     
     node2.neighbors.append(node1)
     node2.neighbors.append(node3)
@@ -108,24 +111,26 @@ def main():
     
     node4.neighbors.append(node3)
     node4.neighbors.append(node1)
-    
-    node5.neighbors.append(node1)
-    node6.neighbors.append(node1)
-    
-    node6.neighbors.append(node2)
-    node2.neighbors.append(node6)
-    
-    node6.neighbors.append(node7)
-    node7.neighbors.append(node6)
-    
-    node7.neighbors.append(node8)
-    node8.neighbors.append(node7)
+#    
+#    node5.neighbors.append(node1)
+#    node6.neighbors.append(node1)
+#    
+#    node6.neighbors.append(node2)
+#    node2.neighbors.append(node6)
+#    
+#    node6.neighbors.append(node7)
+#    node7.neighbors.append(node6)
+#    
+#    node7.neighbors.append(node8)
+#    node8.neighbors.append(node7)
     
 #    solution = Solution()
 #    solution.trasverseGraph(node1)
     
     clonedGraph = (Solution().cloneGraph(node1))
     Solution().trasverseGraph(clonedGraph)
+    print('original:')
+    Solution().trasverseGraph(node1)
 
 
 if __name__ == '__main__':
