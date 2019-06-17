@@ -16,30 +16,56 @@ class Solution(object):
         res = 0
         
         summ = sum(nums)
-        print(summ)
+        #print(summ)
         
         # (summ + S) must be even 
         if (summ + S) % 2 != 0:
             return res
+        
+        if len(nums) == 1:
+            if nums[0] == abs(S):
+                return 1
+            else:
+                return 0 
+            
+        if nums[0] == 0:
+            preDic = {0:2}
         else:
-            pSum = (summ + S)/2
-            
-        print('pSum = %d ' %pSum)
-            
-        if pSum > summ or pSum < 0:
-            return res
+            preDic = {nums[0]:1,-nums[0]:1}
         
-        for n in nums:
-            if n == pSum:
-                res += 1
-                nums.remove(n)
         
-        print(nums)
-        return res
+        
+        for n in nums[1:]:
+            keys = preDic.keys()
+#            print(keys)
+            curDic = dict()
+            for key in keys:
+                if (key + n) in curDic.keys():
+                    curDic[key + n] += preDic[key] 
+                else:
+                    curDic[key + n] = preDic[key] 
+                if (key - n) in curDic.keys():
+                    curDic[key - n] += preDic[key] 
+                else:
+                    curDic[key - n] = preDic[key] 
+            
+#            print(n)
+            #print(preDic)
+            preDic=(curDic.copy())
+            #print(preDic)
+        
+        
+        
+        if S in curDic.keys():
+            return curDic[S]
+        else:
+            return 0
     
 def main():
+
+
     mySolution = Solution()
-    print(mySolution.findTargetSumWays([1,1,1],-1))
+    print(mySolution.findTargetSumWays([2,107,109,113,127,131,137,3,2,3,5,7,11,13,17,19,23,29,47,53], 10))
     
     
 if __name__ == '__main__':
