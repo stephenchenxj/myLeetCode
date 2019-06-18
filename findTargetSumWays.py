@@ -40,14 +40,17 @@ class Solution(object):
 #            print(keys)
             curDic = dict()
             for key in keys:
-                if (key + n) in curDic.keys():
-                    curDic[key + n] += preDic[key] 
-                else:
-                    curDic[key + n] = preDic[key] 
-                if (key - n) in curDic.keys():
-                    curDic[key - n] += preDic[key] 
-                else:
-                    curDic[key - n] = preDic[key] 
+                curDic[key + n] = preDic[key] + curDic.get ((key + n) ,0)
+                curDic[key - n] = preDic[key] + curDic.get ((key - n) ,0)
+                
+#                if (key + n) in curDic.keys():
+#                    curDic[key + n] += preDic[key] 
+#                else:
+#                    curDic[key + n] = preDic[key] 
+#                if (key - n) in curDic.keys():
+#                    curDic[key - n] += preDic[key] 
+#                else:
+#                    curDic[key - n] = preDic[key] 
             
 #            print(n)
             #print(preDic)
@@ -55,11 +58,8 @@ class Solution(object):
             #print(preDic)
         
         
-        
-        if S in curDic.keys():
-            return curDic[S]
-        else:
-            return 0
+        return curDic.get (S ,0)
+    
     
 def main():
 
