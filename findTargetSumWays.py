@@ -7,6 +7,8 @@ Created on Tue Jun 11 21:29:54 2019
 """
 
 class Solution(object):
+    result = 0
+    
     def findTargetSumWays(self, nums, S):
         """
         :type nums: List[int]
@@ -61,12 +63,31 @@ class Solution(object):
         return curDic.get (S ,0)
     
     
+    
+    def helper(self, nums, S, pos, eval):
+        print(eval)
+        if pos == len(nums):
+            if S == eval:
+                self.result += 1
+            return
+        self.helper(nums, S, pos+1, eval + nums[pos])
+        self.helper(nums, S, pos+1, eval - nums[pos])
+    def findTargetSumWaysDFS(self, nums, S):
+        self.result = 0
+        if nums == None or len(nums)== 0: 
+            return self.result
+        self.helper(nums, S, 0, 0);
+        return self.result
+    
+    
+    
 def main():
 
 
     mySolution = Solution()
     print(mySolution.findTargetSumWays([2,107,109,113,127,131,137,3,2,3,5,7,11,13,17,19,23,29,47,53], 10))
-    
+    #print(mySolution.findTargetSumWaysDFS([2,107,109,113,127,131,137,3,2,3,5,7,11,13,17,19,23,29,47,53], 10))
+    print(mySolution.findTargetSumWaysDFS([1,2,3],2))
     
 if __name__ == '__main__':
     main()
