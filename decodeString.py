@@ -14,8 +14,8 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        rst = []
         stack = []
+        
         for c in s:
             if c != ']':
                 stack.append(c)
@@ -44,21 +44,12 @@ class Solution(object):
                 digi = (int(''.join(num)))
                 st = ((''.join(temp)))
                 
-                #print (digi*st)
-                rst.append(digi*st)
-                rst.reverse()
+                stack.append(digi*st)
                 
-        return ( ''.join(rst))
-                
-                    
-                
-                
+        return ( ''.join(stack))
         
         
-        
-        
-        
-s = "3[a12[cb]]"
+s = "3[a2[c]]"
 mySolution = Solution()
 print(mySolution.decodeString(s))
         
