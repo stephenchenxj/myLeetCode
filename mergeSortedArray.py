@@ -35,8 +35,11 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums1 in-place instead.
         """
         while m >= 0 and n > 0:
-            if nums1[m-1]> nums2[n-1]:
+            
+                
+            if nums1[m-1]> nums2[n-1] and m-1 >=0:
                 nums1[m+n-1]=nums1[m-1]
+                nums1[m-1] = nums2[n-1]
                 if m > 0:
                     m -= 1
             else:
@@ -45,9 +48,9 @@ class Solution(object):
                     n -= 1
                 
         
-nums1=[2,0]
+nums1=[0]
 nums2=[1]        
 mySolution = Solution()
-mySolution.merge(nums1, 1, nums2, 1)
+mySolution.merge(nums1, 0, nums2, 1)
 print (nums1)
         
