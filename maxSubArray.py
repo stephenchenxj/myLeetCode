@@ -27,4 +27,14 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if nums == None:
+            return None
+        history_max_sum = nums[0]
+        pre_max_sum = nums[0]
+        for n in nums[1:]:
+            pre_max_sum = max(n, n+pre_max_sum)
+            history_max_sum = max(pre_max_sum, history_max_sum)
+            
+        return history_max_sum
+            
         
