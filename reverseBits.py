@@ -49,7 +49,6 @@ class Solution:
             bit = n&1 
             result = result << 1
             result += bit
-            print(result)
             n = n >> 1
             cnt -= 1
         return result
