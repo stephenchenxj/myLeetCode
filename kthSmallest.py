@@ -44,17 +44,20 @@ class TreeNode(object):
         self.left = None
         self.right = None
 class Solution(object):
-    def transverse(self, root, vals):
+    def transverse(self, root, vals, k):
+        
+        if len(vals) == k:
+            return vals[k-1]
         
         if root:
             if root.left:
-                self.transverse(root.left, vals )     
+                self.transverse(root.left, vals, k )     
                 
             #if root.val: # wrong. if root.val = 0, it will not be append. got missing val
             #    vals.append(root.val)            
             vals.append(root.val)
             if root.right:
-                self.transverse(root.right, vals )
+                self.transverse(root.right, vals, k )
         
     
     def kthSmallest(self, root, k):
@@ -66,7 +69,7 @@ class Solution(object):
         listV = []
         count = 0
         
-        self.transverse(root, listV)
+        self.transverse(root, listV, k)
         return listV[k-1]
 
 
@@ -83,7 +86,5 @@ node3.right = node4
 node2.left = node1
 
 test = Solution()
-vals = []
-test.transverse(node5, vals)
-print(vals)
+
 print(test.kthSmallest(node5, 3))
