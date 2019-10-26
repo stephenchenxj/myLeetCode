@@ -31,3 +31,6 @@ class Solution(object):
         :rtype: int
         """
         
+        nums.sort()
+        return nums[len(nums)-k]
+        
