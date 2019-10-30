@@ -50,10 +50,6 @@ class Solution(object):
         :rtype: int
         """
         
-        self.count = 0
-        #initial position
-        r = 0
-        c = 0
         
         '''
         def dfs(m,n,r,c,path):
@@ -73,7 +69,7 @@ class Solution(object):
         '''
         
         '''
-        # still too slow :(
+        # still too slow , failed
         def dfs(m,n,r,c):
             if r < m-1:
                 dfs(m, n, r+1, c)
@@ -105,6 +101,26 @@ class Solution(object):
                 else:
                     array[r][c] = array[r][c-1] + array[r-1][c]
         return array[m-1][n-1]
+    
+    
+    
+        '''
+        # slower
+        self.mem = {(1,1):1}
+        
+        def traceMem(r,c):
+            if r < 0 or c < 0:
+                return 0
+            if(r,c) in self.mem:
+                return self.mem[(r,c)]
+            self.mem[(r,c)] = traceMem(r-1,c) + traceMem(r, c-1)
+            return self.mem[(r,c)]
+            
+        result = traceMem(m,n)
+        
+        return result
+        
+        '''
     
     
     
