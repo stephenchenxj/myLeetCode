@@ -44,24 +44,23 @@ class Solution(object):
         """
         if numerator == 0:
             return '0'
-        ans = []
         fractional_part = []
         fractional_dict = dict()
         positive = (numerator < 0) is (denominator < 0)
         numerator, denominator = abs(numerator), abs(denominator)
         int_part = numerator // denominator
         numerator = numerator % denominator
-        ans.append(str(int_part))
+        ans = (str(int_part))
 #        print(int_part)
 #        print(numerator)
         if numerator != 0:
-            ans.append('.')
+            ans += ('.')
         index = 0
-        repeated_loc = -1
+        repeated_loc = None
         while numerator != 0:
             numerator *= 10   
-            if numerator in fractional_dict.keys():
-                repeated_loc = fractional_dict[numerator]
+            repeated_loc = fractional_dict.get(numerator)
+            if repeated_loc:
                 break
             else:
                 fractional_dict[numerator] = index
@@ -70,24 +69,21 @@ class Solution(object):
 #            print(numerator) 
             index += 1
 #        print(fractional_part[repeated_loc:index+1]) 
-        if repeated_loc == -1: # no repeated fractional part
-            ans.extend(fractional_part)
+        if repeated_loc == None: # no repeated fractional part
+            ans += ''.join(fractional_part)
         else: 
             if repeated_loc != 0:
-                ans.extend(fractional_part[:repeated_loc])
-            ans.append('(')
-            ans.extend(fractional_part[repeated_loc:index])
-            ans.append(')')
+                ans += ''.join(fractional_part[:repeated_loc])
+            ans+=('(')
+            ans += ''.join(fractional_part[repeated_loc:index])
+            ans+=(')')
         if positive == False:
-            temp = ['-']
-            temp.extend(ans)
-            ans = temp
-        temp =''.join((ans))    
-        return temp
+            ans = '-' + ans   
+        return ans
             
 test = Solution()
 
-print(test.fractionToDecimal(1,19))
+print(test.fractionToDecimal(1,6))
             
             
             
