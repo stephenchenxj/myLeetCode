@@ -118,15 +118,20 @@ class MyBinaryTreeClass(object):
                 
         return head
             
-tree = MyBinaryTreeClass()
-root = tree.listToBinaryTree([0,1,None, 3, 4,None, None,None, None, 9, None, None, None, None, None])    
-print(root)    
 
-vals = tree.getValuesBreadthFirst(root)
-print(vals)
-
-vals = tree.getValuesBreadthFirstWithNone(root)
-print(vals)
+def main():
+    tree = MyBinaryTreeClass()
+    root = tree.listToBinaryTree([0,1,None, 3, 4,None, None,None, None, 9, None, None, None, None, None])    
+    print(root)    
+    
+    vals = tree.getValuesBreadthFirst(root)
+    print(vals)
+    
+    vals = tree.getValuesBreadthFirstWithNone(root)
+    print(vals)
+    
+if __name__ == '__main__':
+    main()
 
 
 #lst = [1,2,3,4]
