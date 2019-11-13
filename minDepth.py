@@ -60,6 +60,18 @@ class Solution(object):
                 currentLevelNodes = nextLevelNodes[:]
                 nextLevelNodes = []
         return depth
+    
+        '''
+        #simple, but slow
+        depth = 0
+        if root == None:
+            return depth
+        
+        if root.left and root.right:
+            return min(self.minDepth(root.left), self.minDepth(root.right)) +1
+        else:
+            return max(self.minDepth(root.left), self.minDepth(root.right)) +1
+            '''
             
                 
                 
