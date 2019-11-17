@@ -57,14 +57,11 @@ class Solution(object):
         emDict = dict()        
         for em in employees:
             emDict[em.id] = em
-        
         ids = [id]
         while ids:
             currentId = ids.pop()
             im += emDict[currentId].importance
-            ids.extend(emDict[currentId].subordinates)
-        
-        
+            ids.extend(emDict[currentId].subordinates) 
         return im
         
         
