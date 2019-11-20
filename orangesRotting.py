@@ -57,41 +57,45 @@ class Solution(object):
         """
         row = len(grid)
         col = len(grid[0])
-        def bfs(r, c, minute):
-            if r >= row or r < 0:
-                return
-            if c >= col or c < 0:
-                return            
-            if grid[r][c] == minute:
-                if r+1 < row and grid[r+1][c] == 1:
-                    grid[r+1][c]= minute+1
-                if r-1 >= 0 and grid[r-1][c] == 1:
-                    grid[r-1][c]= minute+1
-                if c+1 < col and grid[r][c+1] == 1:
-                    grid[r][c+1]= minute+1
-                if c-1 >= 0 and grid[r][c-1] == 1:
-                    grid[r][c-1]= minute+1
-                
-                bfs(r+1, c, minute+1)
-                bfs(r-1, c, minute+1)
-                bfs(r, c+1, minute+1)
-                bfs(r, c-1, minute+1)
-                        
+        
+        ans = 0
+        newRotten = []
+        rotting = []
+        fresh = dict()
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j]== 2:
+                    newRotten.append((i,j))
+                elif grid[i][j]==1:
+                    fresh[(i,j)] = True
+        if not newRotten and fresh:
+            return -1
+        elif not fresh:
+            return 0
+        #print(fresh)        
+        while newRotten:
+            loc = newRotten.pop()
+            if fresh.get((loc[0]+1,loc[1])):
+                rotting.append((loc[0]+1,loc[1]))
+                fresh.pop((loc[0]+1,loc[1]))
+            if fresh.get((loc[0]-1,loc[1])):
+                rotting.append((loc[0]-1,loc[1]))
+                fresh.pop((loc[0]-1,loc[1]))
+            if fresh.get((loc[0],loc[1]+1)):
+                rotting.append((loc[0],loc[1]+1))
+                fresh.pop((loc[0],loc[1]+1))
+            if fresh.get((loc[0],loc[1]-1)):
+                rotting.append((loc[0],loc[1]-1))
+                fresh.pop((loc[0],loc[1]-1))
             
-        for i in range(row):
-            for j in range(col):
-                bfs(i,j, 2)
-        ans = 0        
-        for i in range(row):
-            for j in range(col):
-                if grid[i][j] == 1:
-                    return -1
-                elif grid[i][j]>ans:
-                    ans = grid[i][j]
-        #print(grid)
-        if ans >= 2:
-            return ans -2
-        return ans
+            if not newRotten:
+                newRotten = rotting[:]
+                rotting = []
+                ans+=1
+        if fresh:
+            return -1
+
+        return ans-1
     
 test = Solution()
 grid = [[2,1,1],[0,1,1],[1,1,1]]
