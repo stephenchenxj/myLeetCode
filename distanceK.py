@@ -61,25 +61,18 @@ class Solution(object):
         :type K: int
         :rtype: List[int]
         """
-        parents = dict()
-        parents[root.val] = None
-        def findTargetNode(root, target):
-            node = None
-            if root.val == target:
-                return root
-            else:
-                if root.left:
-                    parents[root.left.val] = root
-                    node = findTargetNode(root.left, target)
-                if not node and root.right:  # must add "not node", only if the return value from the line above:
-                    # node = findTargetNode(root.left, target) is None, then search the target in the right branch.
-                    # otherwise, if target is found in the left branch, but search again in the right branch, the previous 
-                    # result will be overwritten to None
-                    parents[root.right.val] = root
-                    node = findTargetNode(root.right, target)
-            return node
-        node = findTargetNode(root, target)
-        #print(parents)
+        
+        #target is a TreeNode, not the target value. So no need to search for the node with that value
+        
+        parents = dict()        
+        def findParent(node, parent):
+            if node:
+                parents[node.val] = parent
+                findParent(node.left, node)
+                findParent(node.right, node)
+                
+        findParent(root, None)
+        
         ans = []
         visited = dict()
         def findK(root, K):
@@ -97,14 +90,9 @@ class Solution(object):
                 if parents.get(root.val): #if it doesn't have a parent in the dict, it means 
                     #this node is below the target. No need to search upwards
                     findK(parents[root.val],K-1)
-        findK(node, K)
+        findK(target, K)
         return ans
             
         
     
-tree = myBinaryTreeClass.MyBinaryTreeClass()
-root = tree.listToBinaryTree([3,5,1,6,2,0,8, None,None,7,4])
-
-test = Solution()
-print(test.distanceK(root, 5, 2))
 
