@@ -58,24 +58,30 @@ class Solution(object):
         :type graph: List[List[int]]
         :rtype: bool
         """
-        groupA = True
+        groupA = 1
         #visited vertices or vertices which has been added into the q
         vertices = dict()        
-        #enter from the first item
-        q = [0]    
-        vertices[0] = groupA
-        while q:        
-            i = q.pop(0)
-            groupNeighbour = not vertices[i]
-            for n in graph[i]:
-                if vertices.get(n):# this vertix has been labled before
-                    if vertices[n] != groupNeighbour:
-                        return False
-                else: # this vertix has not been labled before
-                    vertices[n] = groupNeighbour
-                    
-                    if n not in q:
-                        q.append(n)    
+        
+        for i in range(len(graph)):
+            #enter from item
+            if not vertices.get(i):
+                q = [i]    
+                vertices[i] = groupA
+                while q:        
+                    j = q.pop(0)
+                    if vertices[j] == 1:
+                        groupNeighbour = 2
+                    else:
+                        groupNeighbour = 1
+                    for n in graph[j]:
+                        if vertices.get(n):# this vertix has been labled before
+                            if vertices[n] != groupNeighbour:
+                                return False
+                        else: # this vertix has not been labled before
+                            vertices[n] = groupNeighbour
+                            
+                            if n not in q:
+                                q.append(n)    
 
         return True
     
@@ -96,7 +102,8 @@ class Solution(object):
                     
                 
                 
-graph = [[],[2,4,6],[1,4,8,9],[7,8],[1,2,8,9],[6,9],[1,5,7,8,9],[3,6,9],[2,3,4,6,9],[2,4,5,6,7,8]]
+graph = [[1,3],[0,2],[1,3],[0,2]]
+
 test = Solution()
 print(test.isBipartite(graph))   
-test.traverseGraphBFS(graph)     
+#test.traverseGraphBFS(graph)     
