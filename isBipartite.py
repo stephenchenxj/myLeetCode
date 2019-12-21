@@ -82,7 +82,6 @@ class Solution(object):
                             
                             if n not in q:
                                 q.append(n)    
-
         return True
     
     def traverseGraphBFS(self, graph):
