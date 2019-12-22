@@ -46,6 +46,7 @@ class Solution(object):
         :type K: int
         :rtype: int
         """
+        '''
         
         #since the total length of times will be in the range [1,6000], w < 100
         #set initial map to a max value of 6001
@@ -57,6 +58,7 @@ class Solution(object):
         delay[K] = 0
         
         processedRoute = dict()
+        
         while q:
             n = q.pop(0)
             for i, time in enumerate (times):
@@ -71,6 +73,22 @@ class Solution(object):
             return -1
         else:
             return result
+        '''
+        
+        delay = dict()
+        for i in range(N):
+            delay[i+1] = 6001
+        
+        delay[K] = 0
+        for i in range(N):
+            for time in times:
+                delay[time[1]] = min(delay[time[1]], time[2] + delay[time[0]])
+        result = max(delay.values())
+        if result == 6001:
+            return -1
+        else:
+            return result
+        
         
         
 
