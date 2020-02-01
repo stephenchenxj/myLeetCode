@@ -4,6 +4,25 @@
 Created on Sun Jan 20 19:45:37 2019
 
 @author: dev
+
+387. First Unique Character in a String
+Easy
+
+Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+
+Examples:
+
+s = "leetcode"
+return 0.
+
+s = "loveleetcode",
+return 2.
+
+Note: You may assume the string contain only lowercase letters.
+Accepted
+378,731
+Submissions
+737,704
 """
 
 class Solution(object):
