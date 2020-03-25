@@ -57,7 +57,7 @@ class Solution(object):
     
     def DFS_clear_adjacent_land(self, grid, i, j):
         if( i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != '1'):
-            return None
+            return 
         grid[i][j] = '0'
         self.DFS_clear_adjacent_land(grid, i-1, j)
         self.DFS_clear_adjacent_land(grid, i+1, j)
