@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['../../.spyder-py3/temp.py', 'python_map_filter.py', 'python_format_printFormat.py', 'python_join.py', '59_SpiralMatrixII.py', '994_orangesRotting.py', '994_RottingOranges.py', 'twoSum_2.py', 'twoSum.py', '653_Two_Sum_IV-Input_is_a_BST.py']
+recent_files = ['../../.spyder-py3/temp.py', 'python_join.py', '973_K_Closest_Points_to_Origin.py', 'python_sort_lambda.py', 'python_create2Darray_list.py', '572_SubtreeOfAnotherTree.py', '346_MovingAveragefromDataStream.py', '541_ReverseStringII.py', '1160_FindWordsThatCanBeFormedbyCharacters_countCharacters.py', '1155_numRollsToTarget.py']
 

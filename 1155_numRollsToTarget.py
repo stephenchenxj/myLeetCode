@@ -69,9 +69,6 @@ Submissions
 
 
 class Solution(object):
-    hm = dict()
-    f = 0
-    
     def numRollsToTarget(self, d, f, target):
         """
         :type d: int
@@ -79,24 +76,33 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        ways = 0
-        if self.f != f: # it means an object with a new face number is created. The class viarable hm is not valid anymore
-            self.f = f
-            self.hm = dict()
+        history = dict()
+            
+        def recursion(d,f,target, history):
         
-        if f*d < target or target < d:
-            return ways
-        if d == 1:
-            if target <= f:
-                ways = 1
-        for i in range(1,f+1):
-            if (d-1, target-i) not in self.hm:  
-                temp = self.numRollsToTarget(d-1, f, target - i)
-                self.hm[(d-1, target-i)] = temp
-            ways += self.hm[(d-1, target-i)]                
-        return ways
+            ways = 0
+            if target > d*f or target < d:
+                return ways
+            if target == d*f or target == d:
+                return 1
+            if d == 1:
+                return 1
+
+            for i in range(1, f+1):
+                if (d-1, target -i) not in history:
+                    temp = recursion(d-1, f, target-i, history)
+                    history[(d-1, target - i)] = temp
+                else:
+                    temp = history[(d-1, target - i)]
+                ways += temp 
+
+            return ways%(10**9 +7)
+        
+        return recursion(d,f,target, history)
     
-d = 2
-f = 5
-target = 10
+d = 30
+f = 30
+target = 500
 print(Solution().numRollsToTarget(d, f, target))
+
+print(10^9+7)
