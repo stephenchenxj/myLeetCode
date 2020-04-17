@@ -28,3 +28,17 @@ print('s1.join(s2):', s1.join(s2))
 
 """ Each character of s1 is concatenated to the front of s2""" 
 print('s2.join(s1):', s2.join(s1))
+
+
+#str list to string
+strList = ['1', '2', '3', '4', 'a', 'b', '.', 'z']
+string = ''.join(strList)
+print(string)
+
+
+strList = string.split('.')
+print(strList)
+
+sentence = "Hi, my name is Stephen."
+wordList = sentence.split()
+print(wordList)
