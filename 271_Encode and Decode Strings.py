@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Apr 29 09:23:08 2020
+
+@author: chen
+
+271. Encode and Decode Strings
+Medium
+
+394
+
+143
+
+Add to List
+
+Share
+Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+
+Machine 1 (sender) has the function:
+
+string encode(vector<string> strs) {
+  // ... your code
+  return encoded_string;
+}
+Machine 2 (receiver) has the function:
+vector<string> decode(string s) {
+  //... your code
+  return strs;
+}
+So Machine 1 does:
+
+string encoded_string = encode(strs);
+and Machine 2 does:
+
+vector<string> strs2 = decode(encoded_string);
+strs2 in Machine 2 should be the same as strs in Machine 1.
+
+Implement the encode and decode methods.
+
+ 
+
+Note:
+
+The string may contain any possible characters out of 256 valid ascii characters. Your algorithm should be generalized enough to work on any possible characters.
+Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
+Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
+Accepted
+55,614
+Submissions
+181,434
+
+"""
+
+class Codec:
+
+    def encode(self, strs):
+        """Encodes a list of strings to a single string.
+        
+        :type strs: List[str]
+        :rtype: str
+        """
+        cnt = len(strs)
+        ans = ""
+        if cnt == 0:
+            return ans
+        ans += str(cnt) + "#"
+        for words in strs:
+            ans += str(len(words)) + "#" + words
+        return ans
+            
+        
+        
+        
+
+    def decode(self, s):
+        """Decodes a single string to a list of strings.
+        
+        :type s: str
+        :rtype: List[str]
+        """
+        ans = []
+        if s == "":
+            return ans
+        
+        i = s.find("#")
+        cnt = int(s[:i])
+        s = s[i+1:]
+        
+        for i in range(cnt):
+            j = s.find("#")
+            w_len = int(s[:j])
+            words = s[j+1:j+1+w_len]
+            ans.append(words)
+            s = s[j+1+w_len:]
+        return ans
+            
+        
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.decode(codec.encode(strs))
+
+

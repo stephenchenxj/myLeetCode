@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['../deeplearning/transfer_learning/my_transfer-learning.py', 'python_create2Darray_list.py', 'python_format_printFormat.py', 'python_map_filter.py', 'python_sort_lambda.py', 'findTargetSumWays.py', '82_Remove Duplicates from Sorted List II.py', '83_Remove Duplicates from Sorted List.py', 'untitled1.py', '39_Combination Sum.py']
+recent_files = ['../opencv/ObjectDetection-YOLO/object_detection_yolo.py', '../opencv/HOG_SVM/RF_training.py', '../opencv/HOG_SVM/helpers.py', '../opencv/HOG_SVM/classifier_test.py', '../opencv/HOG_SVM/SVM_training.py']
 
